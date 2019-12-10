@@ -25,7 +25,6 @@ namespace Client
         private void button2_Click(object sender, EventArgs e)
         {
             Logout logoutForm = new Logout();
-            logoutForm.Show();
         }
 
         private void button1_Click(object sender, EventArgs e)
