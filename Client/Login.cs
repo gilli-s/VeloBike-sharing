@@ -21,5 +21,15 @@ namespace Client
         {
 
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Logout logoutForm = new Logout();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
