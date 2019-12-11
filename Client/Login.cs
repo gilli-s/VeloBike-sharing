@@ -12,19 +12,30 @@ namespace Client
 {
     public partial class Login : Form
     {
+        private string kek;
+
         public Login()
         {
             InitializeComponent();
         }
 
+        public Login(string kek)
+        {
+            this.kek = kek;
+            InitializeComponent();
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Logout logoutForm = new Logout();
+            Register logoutForm = new Register();
+            logoutForm.Show();
+            Hide();
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
