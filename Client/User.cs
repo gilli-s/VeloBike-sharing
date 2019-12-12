@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Client
 {
-    class User
+    public class User
     {
         //Поля
         private string username;
