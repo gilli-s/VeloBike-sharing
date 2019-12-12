@@ -46,7 +46,8 @@ namespace Client
                 if (isFill)
                 {
                     User newUser = new User(formCheck.username, formCheck.fio, formCheck.birthday, formCheck.passport,formCheck.card);
-
+                    App appForm = new App();
+                    appForm.Show();
                 }
             }
             else
