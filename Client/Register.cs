@@ -16,15 +16,17 @@ namespace Client
         {
             InitializeComponent();
         }
-        //private bool isFill = false;
+        
         //private bool isAll = false;
 
         //по кнопке идет проверка всех полей
         private void button1_Click(object sender, EventArgs e)
         {
+            
             RegisterFormCheck formCheck = new RegisterFormCheck();
             if (textBox1.Text != "" && textBox2.Text != "" && textBox3.Text != "" && textBox4.Text != "")
             {
+                bool isFill = true;
                 formCheck.username = textBox1.Text;
                 formCheck.fio = textBox2.Text;
                 formCheck.passport = textBox3.Text; 
@@ -37,6 +39,15 @@ namespace Client
                 label9.Text = formCorrect[2] ? "Все норм" : "Неправильно набран birthday";
                 label10.Text = formCorrect[3] ? "Все норм" : "Неправильно набран passport";
                 label11.Text = formCorrect[4] ? "Все норм" : "Неправильно набран card";
+                foreach(bool t in formCorrect)
+                {
+                    if (!t) isFill = false;
+                }
+                if (isFill)
+                {
+                    User newUser = new User(formCheck.username, formCheck.fio, formCheck.birthday, formCheck.passport,formCheck.card);
+
+                }
             }
             else
             {

@@ -15,8 +15,15 @@ namespace Client
         private DateTime birthday;
         private string passport;
         private string card;
-
-
+        //конструктор для ввода полей
+        public User(string _username, string _fio , DateTime _birthday,string _passport, string _card)
+        {
+            Username = _username;
+            FIO = _fio;
+            Birthday = _birthday;
+            Passport = _passport;
+            Card = _card;
+        }
         //Свойства 
         public string Username {
             get
@@ -25,12 +32,9 @@ namespace Client
             }
             set
             {
-                //Regex regex = new Regex(@"^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$");
-                //MatchCollection matches = regex.Matches(value);
-                //if (matches != null)
-                //{
+                
                     this.username = value;
-                //}
+            
             }
         }
         public string FIO {
@@ -40,12 +44,9 @@ namespace Client
             }
             set
             {
-                //Regex regex = new Regex(@"^\p{Lu}\p{Ll}*(?:-\p{Lu}\p{Ll}*)?$");
-                //MatchCollection matches = regex.Matches(value);
-                //if (matches != null)
-                //{
+                
                     this.fio = value;
-               // }
+               
                 
             }
         }
