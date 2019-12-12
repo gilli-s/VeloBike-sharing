@@ -10,7 +10,7 @@ namespace Host
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello Tyumen");
+            Console.WriteLine("Hello World");
         }
     }
 }
