@@ -31,8 +31,8 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,7 +53,7 @@
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(241, 38);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(241, 39);
             this.toolStripMenuItem1.Text = "toolStripMenuItem1";
             // 
             // toolStripMenuItem2
@@ -62,16 +62,16 @@
             this.toolStripMenuItem2.Size = new System.Drawing.Size(241, 39);
             this.toolStripMenuItem2.Text = "toolStripMenuItem2";
             // 
-            // toolStripTextBox1
-            // 
-            this.toolStripTextBox1.Name = "toolStripTextBox1";
-            this.toolStripTextBox1.Size = new System.Drawing.Size(100, 39);
-            // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             this.toolStripMenuItem3.Size = new System.Drawing.Size(241, 39);
             this.toolStripMenuItem3.Text = "toolStripMenuItem3";
+            // 
+            // toolStripTextBox1
+            // 
+            this.toolStripTextBox1.Name = "toolStripTextBox1";
+            this.toolStripTextBox1.Size = new System.Drawing.Size(100, 39);
             // 
             // App
             // 
@@ -82,6 +82,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "App";
             this.Text = "App";
+            this.Load += new System.EventHandler(this.App_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
