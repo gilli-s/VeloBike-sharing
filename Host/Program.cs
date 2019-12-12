@@ -10,6 +10,7 @@ namespace Host
     {
         static void Main(string[] args)
         {
+            var trf = new double[12];
         }
     }
 }
