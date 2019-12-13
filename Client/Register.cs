@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Client.ServiceReference1;
 
 namespace Client
 {
@@ -19,7 +18,7 @@ namespace Client
         }
 
         //private bool isAll = false;
-        ServiceReference1.Service1Client srv;
+        
         //по кнопке идет проверка всех полей
         private void button1_Click(object sender, EventArgs e)
         {
@@ -37,7 +36,7 @@ namespace Client
                 formCheck.confPass = textBox6.Text;
                 
                 bool[] formCorrect = formCheck.CheckForm();
-                MessageBox.Show(textBox6.Text);
+                //MessageBox.Show(textBox6.Text);
                 label7.Text =  formCorrect[0] ? "Все норм" : "Неправильно набран логин";
                 label8.Text = formCorrect[1] ? "Все норм" : "Неправильно набран fio";
                 label9.Text = formCorrect[2] ? "Все норм" : "Неправильно набран birthday";
@@ -51,7 +50,8 @@ namespace Client
                 if (isFill)
                 {
                     User newUser = new User(formCheck.username, formCheck.fio, formCheck.birthday, formCheck.passport,formCheck.card,formCheck.pass);
-                    srv.InsertIntoUser(newUser);
+                    var srv = new ServiceReference1.Service1Client();
+                    srv.InsertIntoUser(newUser.Username,newUser.FIO, newUser.Birthday,newUser.Passport,newUser.Card,newUser.Password);
                     App appForm = new App(newUser);
                     appForm.Show();
                 }
@@ -82,7 +82,12 @@ namespace Client
 
         private void Register_Load(object sender, EventArgs e)
         {
-
+            textBox1.Text = "lal";
+            textBox2.Text = "Гилев Александр Владимирович";
+            textBox3.Text = "6713 367853";
+            textBox4.Text = "5469670025758189";
+            textBox5.Text = "1234";
+            textBox6.Text = "1234";
         }
 
         private void label12_Click(object sender, EventArgs e)

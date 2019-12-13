@@ -59,11 +59,11 @@ namespace Client
             }
         }
         [DataMember]
-        public DateTime Birthday { get; set; }
+        public DateTime Birthday { get => birthday; set=> birthday = value ; }
         [DataMember]
-        public string Passport { get; set; }
+        public string Passport { get=>passport; set=>passport = value; }
         [DataMember]
-        public string Card { get; set; }
+        public string Card { get=>card; set=>card = value; }
        
     }
 }
