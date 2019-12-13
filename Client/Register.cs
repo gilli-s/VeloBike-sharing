@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Client.ServiceReference1;
 
 namespace Client
 {
@@ -16,15 +17,15 @@ namespace Client
         {
             InitializeComponent();
         }
-        
-        //private bool isAll = false;
 
+        //private bool isAll = false;
+        ServiceReference1.Service1Client srv;
         //по кнопке идет проверка всех полей
         private void button1_Click(object sender, EventArgs e)
         {
             
             RegisterFormCheck formCheck = new RegisterFormCheck();
-            if (textBox1.Text != "" && textBox2.Text != "" && textBox3.Text != "" && textBox4.Text != "")
+            if (textBox1.Text != "" && textBox2.Text != "" && textBox3.Text != "" && textBox4.Text != "" && textBox5.Text != "" && textBox6.Text != "")
             {
                 bool isFill = true;
                 formCheck.username = textBox1.Text;
@@ -32,21 +33,26 @@ namespace Client
                 formCheck.passport = textBox3.Text; 
                 formCheck.card = textBox4.Text;
                 formCheck.birthday = Convert.ToDateTime(dateTimePicker1.Value.ToShortDateString());
+                formCheck.pass = textBox5.Text;
+                formCheck.confPass = textBox6.Text;
+                
                 bool[] formCorrect = formCheck.CheckForm();
-                // MessageBox.Show(formCorrect[4].ToString());
+                MessageBox.Show(textBox6.Text);
                 label7.Text =  formCorrect[0] ? "Все норм" : "Неправильно набран логин";
                 label8.Text = formCorrect[1] ? "Все норм" : "Неправильно набран fio";
                 label9.Text = formCorrect[2] ? "Все норм" : "Неправильно набран birthday";
                 label10.Text = formCorrect[3] ? "Все норм" : "Неправильно набран passport";
                 label11.Text = formCorrect[4] ? "Все норм" : "Неправильно набран card";
-                foreach(bool t in formCorrect)
+                label15.Text = formCorrect[5] ? "Все норм" : "Неправильно набран password";
+                foreach (bool t in formCorrect)
                 {
                     if (!t) isFill = false;
                 }
                 if (isFill)
                 {
-                    User newUser = new User(formCheck.username, formCheck.fio, formCheck.birthday, formCheck.passport,formCheck.card);
-                    App appForm = new App();
+                    User newUser = new User(formCheck.username, formCheck.fio, formCheck.birthday, formCheck.passport,formCheck.card,formCheck.pass);
+                    srv.InsertIntoUser(newUser);
+                    App appForm = new App(newUser);
                     appForm.Show();
                 }
             }
@@ -67,6 +73,46 @@ namespace Client
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             
+        }
+
+        private void label13_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Register_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label12_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

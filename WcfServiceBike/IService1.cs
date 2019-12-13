@@ -13,6 +13,6 @@ namespace WcfServiceBike
     public interface IService1
     {
         [OperationContract]
-        void InsertIntoUser(User user);
+        void InsertIntoUser(string username, string fio, DateTime date, string passport, string card, string password);
     }
 }

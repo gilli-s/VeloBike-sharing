@@ -12,8 +12,16 @@ namespace Client
 {
     public partial class App : Form
     {
+        private User newUser;
+
         public App()
         {
+            InitializeComponent();
+        }
+
+        public App(User newUser)
+        {
+            this.newUser = newUser;
             InitializeComponent();
         }
 
