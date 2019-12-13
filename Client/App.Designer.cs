@@ -63,8 +63,8 @@
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(156, 27);
-            this.toolStripMenuItem2.Text = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(94, 27);
+            this.toolStripMenuItem2.Text = "Станции 2";
             // 
             // toolStripMenuItem3
             // 
