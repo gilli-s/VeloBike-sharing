@@ -290,6 +290,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
             this.Name = "Register";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Logout";
             this.Load += new System.EventHandler(this.Register_Load);
             this.ResumeLayout(false);

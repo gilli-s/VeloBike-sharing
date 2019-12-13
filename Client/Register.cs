@@ -54,6 +54,7 @@ namespace Client
                     srv.InsertIntoUser(newUser.Username,newUser.FIO, newUser.Birthday,newUser.Passport,newUser.Card,newUser.Password);
                     App appForm = new App(newUser);
                     appForm.Show();
+                   
                 }
             }
             else
@@ -68,6 +69,8 @@ namespace Client
             string kek = "Привет";
             Login login = new Login(kek);
             login.Show();
+            Hide();
+            
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

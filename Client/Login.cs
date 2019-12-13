@@ -40,7 +40,17 @@ namespace Client
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            if(textBox1.Text != "" && textBox2.Text!= "")
+            {
+                string login = textBox1.Text;
+                string password = textBox2.Text;
+                var srv = new ServiceReference1.Service1Client();
+                User userlogin = (User)srv.CheckUser(login, password);
+                App appForm = new App(userlogin);
+                appForm.Show();
+                Hide();
+                //MessageBox.Show(userlogin.Username.ToString());
+            }
         }
     }
 }

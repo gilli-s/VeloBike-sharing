@@ -15,6 +15,44 @@ namespace WcfServiceBike
     public class Service1 : IService1
     {
         private string connectionString = @"Data Source=DESKTOP-R2DBBQN;Initial Catalog=VeloSharing;Integrated Security=True";
+        //провека юзера в базе данных
+        public User CheckUser(string username, string password)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string sql = $"Select * From [User] where Username ='{username}' and Password = '{password}' ;";
+                connection.Open();
+                SqlCommand command = new SqlCommand(sql, connection);
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows) // если есть данные
+                {
+                    User userFromBd = new User();
+                    while (reader.Read()) // построчно считываем данные
+                    {
+                        userFromBd.Username = (string)reader.GetValue(1);
+                        userFromBd.FIO = (string)reader.GetValue(2);
+                        userFromBd.Birthday = (DateTime)reader.GetValue(3);
+                        userFromBd.Passport = (string)reader.GetValue(4);
+                        userFromBd.Card = (string)reader.GetValue(5);
+                        Console.WriteLine(userFromBd.Username);
+                    }
+                    reader.Close();
+                    connection.Close();
+                    return userFromBd;
+                }
+                else
+                {
+                    reader.Close();
+                    connection.Close();
+                    return new User();
+                }
+
+              
+
+            }
+        }
+        //добавление юзера в базу данных
         public void InsertIntoUser(string username, string fio, DateTime birthday , string passport, string card, string password)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -39,6 +77,7 @@ namespace WcfServiceBike
                         Console.WriteLine(ex.Message);
                     }
                 }
+                connection.Close();
             }
         }
     }

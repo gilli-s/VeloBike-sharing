@@ -14,5 +14,7 @@ namespace WcfServiceBike
     {
         [OperationContract]
         void InsertIntoUser(string username, string fio, DateTime date, string passport, string card, string password);
+        [OperationContract]
+        User CheckUser(string username, string password);
     }
 }
