@@ -14,8 +14,10 @@ namespace Client
         public DateTime birthday;
         public string passport;
         public string card;
+        public string pass;
+        public string confPass;
 
-        private bool[] check = new bool[5];
+        private bool[] check = new bool[6];
         public bool[] Check { get => check; private set => check =value; }
 
         //проверка формы
@@ -26,7 +28,15 @@ namespace Client
             CheckBirthday();
             CheckPassport();
             CheckCard();
+            CheckPassword();
+
             return Check;
+        }
+
+        //проверка паролей
+        private void CheckPassword()
+        {
+            Check[5] = pass.Length > 0 && pass == confPass ? true : false;
         }
 
         //проверка карты

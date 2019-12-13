@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,7 +11,12 @@ namespace Host
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("TTTTTTTello World");
+            using (var host = new ServiceHost(typeof(WcfServiceBike.Service1)))
+            {
+                host.Open();
+                Console.WriteLine("Хост стартовал!");
+                Console.ReadLine();
+            }
         }
     }
 }
