@@ -27,7 +27,8 @@ namespace Client
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+            textBox1.Text = "lal";
+            textBox2.Text = "1234";
         }
 
         private void button2_Click(object sender, EventArgs e)

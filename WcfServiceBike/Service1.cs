@@ -15,6 +15,44 @@ namespace WcfServiceBike
     public class Service1 : IService1
     {
         private string connectionString = @"Data Source=DESKTOP-R2DBBQN;Initial Catalog=VeloSharing;Integrated Security=True";
+        //добавление пинкода
+        public void AddPin(string username, string pin)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string sql = "INSERT INTO PinCodes(Username,PinCode) VALUES(@param1,@param2)";
+                using (SqlCommand cmd = new SqlCommand(sql, connection))
+                {
+                    cmd.Parameters.Add("@param1", SqlDbType.VarChar, 50).Value = username;
+                    cmd.Parameters.Add("@param2", SqlDbType.VarChar, 50).Value = pin;
+                    cmd.CommandType = CommandType.Text;
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                }
+                connection.Close();
+            }
+        }
+
+        //бронирование велосипеда
+        public void BookBike(string street, int freebikes)
+        {
+            string sqlExpression = $"UPDATE Stations SET CountFreeBikes = {freebikes -1} WHERE Street = '{street}' ;";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sqlExpression, connection);
+                int number = command.ExecuteNonQuery();
+                Console.WriteLine("Обновлено объектов: {0}", number);
+            }
+        }
+
         //провека юзера в базе данных
         public User CheckUser(string username, string password)
         {
@@ -35,7 +73,7 @@ namespace WcfServiceBike
                         userFromBd.Birthday = (DateTime)reader.GetValue(3);
                         userFromBd.Passport = (string)reader.GetValue(4);
                         userFromBd.Card = (string)reader.GetValue(5);
-                        Console.WriteLine(userFromBd.Username);
+                        Console.WriteLine(userFromBd.Username+ " Вошел в приложение");
                     }
                     reader.Close();
                     connection.Close();
@@ -79,6 +117,18 @@ namespace WcfServiceBike
                 }
                 connection.Close();
             }
+        }
+        //Запрос на выборку всех станций
+        public DataSet OutStation()
+        {
+            SqlConnection con = new SqlConnection(connectionString);
+            con.Open();
+            string query = "SELECT * FROM Stations";
+            SqlDataAdapter da = new SqlDataAdapter(query, con);
+            DataSet ds = new DataSet();
+            da.Fill(ds, "Stations");
+            con.Close();
+            return ds;
         }
     }
 }

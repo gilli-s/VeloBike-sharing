@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
@@ -12,6 +13,12 @@ namespace WcfServiceBike
     [ServiceContract]
     public interface IService1
     {
+        [OperationContract]
+        void AddPin(string username,string pin);
+        [OperationContract]
+        void BookBike(string street, int freebikes );
+        [OperationContract]
+        DataSet OutStation();
         [OperationContract]
         void InsertIntoUser(string username, string fio, DateTime date, string passport, string card, string password);
         [OperationContract]
