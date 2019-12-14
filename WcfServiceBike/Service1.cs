@@ -39,6 +39,52 @@ namespace WcfServiceBike
                 connection.Close();
             }
         }
+        //добавление поездки
+        public void AddScore(string pin)
+        {
+            
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string sql = $"Select PinCode,UserName From PinCodes where PinCode = '{pin}' ;";
+                connection.Open();
+                SqlCommand command = new SqlCommand(sql, connection);
+                SqlDataReader reader = command.ExecuteReader();
+                
+                if (reader.HasRows) // если есть данные
+                {
+                    string username = "";
+                    while (reader.Read()) // построчно считываем данные
+                    {
+                        username = (string)reader.GetValue(1);
+                    }
+                    
+                    string query = "INSERT INTO Score(PinCode,UserName,TimeBegin) VALUES(@param1,@param2,@param3)";
+                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    {
+                        cmd.Parameters.Add("@param1", SqlDbType.VarChar, 50).Value = pin;
+                        cmd.Parameters.Add("@param2", SqlDbType.VarChar, 50).Value = username;
+                        cmd.Parameters.Add("@param3", SqlDbType.Date).Value = DateTime.Now;
+                        cmd.CommandType = CommandType.Text;
+                        try
+                        {
+                            cmd.ExecuteNonQuery();
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                        }
+                    }
+                    reader.Close();
+                }
+                else
+                {
+                    reader.Close();
+                }
+
+
+
+            }
+        }
 
         //бронирование велосипеда
         public void BookBike(string street, int freebikes)

@@ -14,6 +14,8 @@ namespace WcfServiceBike
     public interface IService1
     {
         [OperationContract]
+        void AddScore(string pin);
+        [OperationContract]
         void AddPin(string username,string pin);
         [OperationContract]
         void BookBike(string street, int freebikes );
